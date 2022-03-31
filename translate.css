@@ -1,0 +1,22 @@
+
+#append {
+	position:absolute;
+	overflow-y:scroll;
+	overflow-x:none;
+	height:300px;
+	background: #FFFFFF;
+	filter:alpha(Opacity=95);
+	-moz-opacity:0.95;
+	opacity: 0.95;
+	display: none;
+}
+.itemname {
+	font-size: 9pt;
+	padding: 3px 5px;
+	cursor: pointer;
+	display: block;
+}
+.itemname:hover {
+	background: black;
+	color: #fff;
+}
