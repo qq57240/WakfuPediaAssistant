@@ -3,6 +3,7 @@
 	position:absolute;
 	overflow-y:scroll;
 	overflow-x:none;
+	min-height:0px;
 	max-height:300px;
 	background: #FFFFFF;
 	filter:alpha(Opacity=95);
