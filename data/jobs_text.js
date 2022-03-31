@@ -1,0 +1,16 @@
+var jobs = new Array();
+jobs["40"]={cn:"面点",en:"Baker"};
+jobs["64"]={cn:"种植",en:"Farmer"};
+jobs["71"]={cn:"伐木",en:"Lumberjack"};
+jobs["72"]={cn:"草药",en:"Herbalist"};
+jobs["73"]={cn:"采矿",en:"Miner"};
+jobs["74"]={cn:"畜牧",en:"Trapper"};
+jobs["75"]={cn:"钓鱼",en:"Fisherman"};
+jobs["76"]={cn:"厨师",en:"Chef"};
+jobs["77"]={cn:"制甲",en:"Armorer"};
+jobs["78"]={cn:"珠宝",en:"Jeweler"};
+jobs["79"]={cn:"裁缝",en:"Tailor"};
+jobs["80"]={cn:"皮匠",en:"Leather Dealer"};
+jobs["81"]={cn:"工匠",en:"Handyman"};
+jobs["82"]={cn:"制造",en:"General Crafting"};
+jobs["83"]={cn:"武器大师",en:"Weapons Master"};
