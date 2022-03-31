@@ -1,7 +1,7 @@
 
 #append {
 	position:absolute;
-	overflow-y:scroll;
+	overflow-y:auto;
 	overflow-x:none;
 	min-height:0px;
 	max-height:300px;
