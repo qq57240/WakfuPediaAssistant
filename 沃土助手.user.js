@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         沃土助手
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @namespace    https://github.com/qq57240/WakfuAssistant
+// @version      0.2
 // @description  沃土官方百科精准翻译及搜索框增强
 // @author       Soviet
 // @match        https://www.wakfu.com/en/mmorpg/encyclopedia/*
@@ -18,6 +18,10 @@
 // @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/sets_text.js
 // @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skilldescriptions_text.js
 // @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skills_text.js
+// @license      MIT License
+// @compatible   chrome
+// @compatible   firefox
+// @run-at       document-end
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
 // ==/UserScript==
