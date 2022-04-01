@@ -296,12 +296,6 @@
             if (mutation.type === "childList") {
                 if (
                     mutation.removedNodes.length === 1 &&
-                    mutation.removedNodes[0].nodeName === "SCRIPT"
-                ) {
-                    translate_run();
-                }
-                if (
-                    mutation.removedNodes.length === 1 &&
                     mutation.removedNodes[0].className ===
                     "ak-table ak-responsivetable" &&
                     mutation.target.className === "ak-responsivetable-wrapper"
@@ -322,4 +316,5 @@
         characterDataOldValue: false
     };
     ob.observe(article, options);
+    translate_run();
 })();
