@@ -32,8 +32,8 @@ jobs["81"]={cn:"工匠"};
 jobs["82"]={cn:"制造"};
 
 rarities["0"]={cn:"普通"};
-rarities["1"]={cn:"少见"};
-rarities["2"]={cn:"稀有"};
+rarities["1"]={cn:"稀有"};
+rarities["2"]={cn:"珍贵"};
 rarities["3"]={cn:"神话"};
 rarities["4"]={cn:"传说"};
 rarities["5"]={cn:"遗迹"};
