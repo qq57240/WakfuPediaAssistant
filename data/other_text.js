@@ -3,6 +3,7 @@ var rarities = new Array();
 var origines = new Array();
 var catchables = new Array();
 var effects = new Array();
+var bonus = new Array();
 
 islands["1"]={cn:"阿玛克纳"};
 islands["2"]={cn:"邦塔"};
@@ -32,9 +33,9 @@ jobs["81"]={cn:"工匠"};
 jobs["82"]={cn:"制造"};
 
 rarities["0"]={cn:"普通"};
-rarities["1"]={cn:"稀有"};
-rarities["2"]={cn:"珍贵"};
-rarities["3"]={cn:"神秘"};
+rarities["1"]={cn:"少见"};
+rarities["2"]={cn:"稀有"};
+rarities["3"]={cn:"神话"};
 rarities["4"]={cn:"传说"};
 rarities["5"]={cn:"遗迹"};
 rarities["6"]={cn:"PVP"};
@@ -84,5 +85,9 @@ effects["45"]={cn:"熟练",en:"Kit Skill bonus"};
 effects["49"]={cn:"召唤物伤害",en:"Summons damage bonus"};
 effects["51"]={cn:"意志",en:"Willpower bonus"};
 effects["52"]={cn:"格挡",en:"Block bonus"};
+
+bonus["1"]={cn:"行动力",en:"AP"};
+bonus["2"]={cn:"移动力",en:"MP"};
+bonus["3"]={cn:"创生力",en:"WP"};
 
 catchables["1"]={cn:"可捕捉"};
