@@ -1,24 +1,26 @@
 // ==UserScript==
 // @name         沃土助手
 // @namespace    https://github.com/qq57240/WakfuAssistant
-// @version      0.2
+// @version      0.21
 // @description  沃土官方百科精准翻译及搜索框增强
 // @author       Soviet
 // @match        https://www.wakfu.com/en/mmorpg/encyclopedia/*
 // @icon         https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/128.png
 // @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css
 // @require      http://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/consumables_text.js?sha256=167F60971C35BDB21B42F53676B64A566F8D152B95E93DCF1E6DCE52588809D9
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/descriptions_text.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/families_text.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/items_text.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/jobs_text.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/monsters_text.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/other_text.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/sets_text.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skilldescriptions_text.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skills_text.js
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/consumables_text.js?md5=cb11d395a78d48e23c88727634c7d4a9
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/descriptions_text.js?md5=61eead1dd244816b801cee1fd7efe7ad
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/families_text.js?md5=48870d3f4b158e6e3f7e5947c260658c
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/items_text.js?md5=f6f316e347d514d19ca01eff1a585a29
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/jobs_text.js?md5=c2399be37edd1379c23ca5bf97404135
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/monsters_text.js?md5=ba499b65958c9f13aa8ede9e8cd41b5a
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/other_text.js?md5=aae1af407405fc29bea8da60296346cf
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/sets_text.js?md5=e9370c5383c1b04655c22492b800736a
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skilldescriptions_text.js?md5=82775e36233f99a0e681418d0e7341e8
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skills_text.js?md5=bab2c03a41d0b5784cac51e48307488a
 // @license      MIT License
+// @updateURL    https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/%E6%B2%83%E5%9C%9F%E5%8A%A9%E6%89%8B.user.js
+// @downloadURL  https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/%E6%B2%83%E5%9C%9F%E5%8A%A9%E6%89%8B.user.js
 // @compatible   chrome
 // @compatible   firefox
 // @run-at       document-end
