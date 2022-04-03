@@ -87,13 +87,13 @@ effects["51"]={cn:"意志",en:"Willpower bonus"};
 effects["52"]={cn:"格挡",en:"Block bonus"};
 
 
-bonus["1"]={cn:"最大行动",en:"MAX AP"};
-bonus["2"]={cn:"最大移动",en:"MAX MP"};
-bonus["3"]={cn:"最大创生",en:"MAX WP"};
+bonus["1"]={cn:"最大行动力",en:"MAX AP"};
+bonus["2"]={cn:"最大移动力",en:"MAX MP"};
+bonus["3"]={cn:"最大创生力",en:"MAX WP"};
 bonus["4"]={cn:"最大生命",en:"MAX HP"};
-bonus["5"]={cn:"行动",en:"AP"};
-bonus["6"]={cn:"移动",en:"MP"};
-bonus["7"]={cn:"创生",en:"WP"};
+bonus["5"]={cn:"行动力",en:"AP"};
+bonus["6"]={cn:"移动力",en:"MP"};
+bonus["7"]={cn:"创生力",en:"WP"};
 bonus["8"]={cn:"生命",en:"HP"};
 bonus["9"]={cn:"伤害",en:"Damage"};
 bonus["10"]={cn:"统率",en:"Control"};
