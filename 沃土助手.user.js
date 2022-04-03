@@ -8,7 +8,7 @@
 // @icon         https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/128.png
 // @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css
 // @require      http://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/consumables_text.js
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/consumables_text.js?sha256=167F60971C35BDB21B42F53676B64A566F8D152B95E93DCF1E6DCE52588809D9
 // @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/descriptions_text.js
 // @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/families_text.js
 // @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/items_text.js
@@ -78,8 +78,11 @@
                             $(el).find("td").eq(2).text(families[key].cn);
                         }
                     }
+                case "pets":
+                case "mounts":
                 case "armors":
                 case "weapons":
+                case "accessories":
                     $(el).find(".item-caracteristics").find(".ak-title").each(function(index, em) {
                         let src_text = $(em).eq(0).text();
                         bonus.forEach(function (bonu){
