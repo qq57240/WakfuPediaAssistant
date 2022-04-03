@@ -86,8 +86,42 @@ effects["49"]={cn:"召唤物伤害",en:"Summons damage bonus"};
 effects["51"]={cn:"意志",en:"Willpower bonus"};
 effects["52"]={cn:"格挡",en:"Block bonus"};
 
-bonus["1"]={cn:"行动力",en:"AP"};
-bonus["2"]={cn:"移动力",en:"MP"};
-bonus["3"]={cn:"创生力",en:"WP"};
+bonus["1"]={cn:"行动",en:"AP"};
+bonus["2"]={cn:"移动",en:"MP"};
+bonus["3"]={cn:"创生",en:"WP"};
+bonus["4"]={cn:"生命",en:"HP"};
+bonus["5"]={cn:"统率",en:"Control"};
+bonus["6"]={cn:"射程",en:"Range"};
+bonus["7"]={cn:"先手",en:"Initiative"};
+bonus["8"]={cn:"格挡",en:"Block"};
+bonus["9"]={cn:"闪避",en:"Dodge"};
+bonus["10"]={cn:"锁定",en:"Lock"};
+bonus["11"]={cn:"伤害",en:"Mastery of"};
+bonus["12"]={cn:"熟练",en:"Kit Skill"};
+bonus["13"]={cn:"暴击",en:"Critical Hit"};
+bonus["14"]={cn:"暴击伤害",en:"Critical Mastery"};
+bonus["15"]={cn:"单体伤害",en:"Single Target Mastery"};
+bonus["16"]={cn:"范围伤害",en:"Area Mastery"};
+bonus["17"]={cn:"远程伤害",en:"Distance Mastery"};
+bonus["18"]={cn:"近战伤害",en:"Melee Mastery"};
+bonus["19"]={cn:"狂暴伤害",en:"Berserk Mastery"};
+bonus["20"]={cn:"背刺伤害",en:"Rear Mastery"};
+bonus["21"]={cn:"治疗",en:"Healing Mastery"};
+bonus["22"]={cn:"种随机元素",en:"random element"};
+bonus["23"]={cn:"种随机元素",en:"random elements"};
+bonus["24"]={cn:"元素抗性",en:"Elemental Resistance"};
+bonus["25"]={cn:"暴击抗性",en:"Critical Resistance"};
+bonus["26"]={cn:"单体抗性",en:"Single Target Resistance"};
+bonus["27"]={cn:"范围抗性",en:"Area Resistance"};
+bonus["28"]={cn:"远程抗性",en:"Distance Resistance"};
+bonus["29"]={cn:"近战抗性",en:"Melee Resistance"};
+bonus["30"]={cn:"狂暴抗性",en:"Berserk Resistance"};
+bonus["31"]={cn:"背刺抗性",en:"Rear Resistance"};
+bonus["31"]={cn:"火抗",en:"Resistance Fire"};
+bonus["31"]={cn:"水抗",en:"Resistance Water"};
+bonus["31"]={cn:"风抗",en:"Resistance Air"};
+bonus["31"]={cn:"土抗",en:"Resistance Earth"};
+
+
 
 catchables["1"]={cn:"可捕捉"};
