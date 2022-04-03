@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         沃土助手
 // @namespace    https://github.com/qq57240/WakfuAssistant
-// @version      0.21
+// @version      0.2.1
 // @description  沃土官方百科精准翻译及搜索框增强
 // @author       Soviet
 // @match        https://www.wakfu.com/en/mmorpg/encyclopedia/*
