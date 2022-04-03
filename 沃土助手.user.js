@@ -48,7 +48,7 @@
         }
     }
 
-    function transListTable() {
+    function transListTable(pagetype) {
         $("tbody tr").each(function(index, el) {
             let pedarray, pedtype, jsonstr, jsonobj, type, id;
             jsonstr = $(el).find("td").eq(1).find("script").eq(0).text();
@@ -68,14 +68,27 @@
                         .text(pedarray[id].cn);
                 }
             }
-            if ($('th[data-priority="2"]').text() === "Family") {
-                let en = $(el).find("td").eq(2).text();
-                if (en != "") {
-                    let key = getKeybyEN(en, families);
-                    if (key >= 0) {
-                        $(el).find("td").eq(2).text(families[key].cn);
+
+            switch (pagetype) {
+                case "monsters":
+                    var en = $(el).find("td").eq(2).text();
+                    if (en != "") {
+                        let key = getKeybyEN(en, families);
+                        if (key >= 0) {
+                            $(el).find("td").eq(2).text(families[key].cn);
+                        }
                     }
-                }
+                case "armors":
+                case "weapons":
+                    $(el).find(".item-caracteristics").find(".ak-title").each(function(index, em) {
+                        let src_text = $(em).eq(0).text();
+                        bonus.forEach(function (bonu){
+                            src_text = src_text.replace(bonu.en,bonu.cn);
+                        });
+                        $(em).eq(0).text(src_text);
+                    });
+                default:
+                    return;
             }
         });
     }
@@ -281,7 +294,7 @@
                 $(".ak-container.ak-content-list.ak-displaymode-image-col").length !=
                 0 && hasdetail;
             if (hastbody) {
-                transListTable();
+                transListTable(pagetype);
                 transKeys();
             }
             if (hasdetail) {
