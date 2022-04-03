@@ -19,8 +19,6 @@
 // @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skilldescriptions_text.js?md5=82775e36233f99a0e681418d0e7341e8
 // @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skills_text.js?md5=bab2c03a41d0b5784cac51e48307488a
 // @license      MIT License
-// @updateURL    https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/%E6%B2%83%E5%9C%9F%E5%8A%A9%E6%89%8B.user.js
-// @downloadURL  https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/%E6%B2%83%E5%9C%9F%E5%8A%A9%E6%89%8B.user.js
 // @compatible   chrome
 // @compatible   firefox
 // @run-at       document-end
