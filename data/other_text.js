@@ -122,6 +122,4 @@ bonus["31"]={cn:"水抗",en:"Resistance Water"};
 bonus["31"]={cn:"风抗",en:"Resistance Air"};
 bonus["31"]={cn:"土抗",en:"Resistance Earth"};
 
-
-
 catchables["1"]={cn:"可捕捉"};
