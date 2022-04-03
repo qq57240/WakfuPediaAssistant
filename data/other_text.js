@@ -86,7 +86,6 @@ effects["49"]={cn:"召唤物伤害",en:"Summons damage bonus"};
 effects["51"]={cn:"意志",en:"Willpower bonus"};
 effects["52"]={cn:"格挡",en:"Block bonus"};
 
-
 bonus["1"]={cn:"最大行动力",en:"MAX AP"};
 bonus["2"]={cn:"最大移动力",en:"MAX MP"};
 bonus["3"]={cn:"最大创生力",en:"MAX WP"};
@@ -130,6 +129,18 @@ bonus["40"]={cn:"土抗",en:"Resistance Earth"};
 bonus["41"]={cn:"抗性",en:"Resistance to"};
 bonus["42"]={cn:"护甲获得",en:"Armor received"};
 bonus["43"]={cn:"护甲给予",en:"Armor given"};
-
+bonus["44"]={cn:"移动速度",en:"movement speed"};
+bonus["45"]={cn:"伤害",en:"Elemental Mastery"};
+bonus["46"]={cn:"火伤",en:"Mastery Fire"};
+bonus["47"]={cn:"水伤",en:"Mastery Water"};
+bonus["48"]={cn:"风伤",en:"Mastery Air"};
+bonus["49"]={cn:"土伤",en:"Mastery Earth"};
+bonus["50"]={cn:"意志",en:"Force of Will"};
+bonus["51"]={cn:"耕种时的收获数量",en:"Harvesting Quantity in Farmer"};
+bonus["52"]={cn:"砍伐时的收获数量",en:"Harvesting Quantity in Lumberjack"};
+bonus["53"]={cn:"采药时的收获数量",en:"Harvesting Quantity in Herbalist"};
+bonus["54"]={cn:"开采时的收获数量",en:"Harvesting Quantity in Miner"};
+bonus["55"]={cn:"畜牧时的收获数量",en:"Harvesting Quantity in Trapper"};
+bonus["56"]={cn:"垂钓时的收获数量",en:"Harvesting Quantity in Fisherman"};
 
 catchables["1"]={cn:"可捕捉"};
