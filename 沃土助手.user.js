@@ -1,23 +1,14 @@
 // ==UserScript==
 // @name         沃土助手
 // @namespace    https://github.com/qq57240/WakfuAssistant
-// @version      0.2.1
+// @version      0.2.0
 // @description  沃土官方百科精准翻译及搜索框增强
 // @author       Soviet
 // @match        https://www.wakfu.com/en/mmorpg/encyclopedia/*
 // @icon         https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/128.png
 // @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css
 // @require      http://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/consumables_text.js?md5=cb11d395a78d48e23c88727634c7d4a9
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/descriptions_text.js?md5=61eead1dd244816b801cee1fd7efe7ad
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/families_text.js?md5=48870d3f4b158e6e3f7e5947c260658c
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/items_text.js?md5=f6f316e347d514d19ca01eff1a585a29
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/jobs_text.js?md5=c2399be37edd1379c23ca5bf97404135
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/monsters_text.js?md5=ba499b65958c9f13aa8ede9e8cd41b5a
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/other_text.js?md5=aae1af407405fc29bea8da60296346cf
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/sets_text.js?md5=e9370c5383c1b04655c22492b800736a
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skilldescriptions_text.js?md5=82775e36233f99a0e681418d0e7341e8
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skills_text.js?md5=bab2c03a41d0b5784cac51e48307488a
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js
 // @license      MIT License
 // @compatible   chrome
 // @compatible   firefox
@@ -73,9 +64,9 @@
                 case "monsters":
                     var en = $(el).find("td").eq(2).text();
                     if (en != "") {
-                        let key = getKeybyEN(en, families);
+                        let key = getKeybyEN(en, pedia.families);
                         if (key >= 0) {
-                            $(el).find("td").eq(2).text(families[key].cn);
+                            $(el).find("td").eq(2).text(pedia.families[key].cn);
                         }
                     }
                 case "pets":
@@ -85,8 +76,8 @@
                 case "accessories":
                     $(el).find(".item-caracteristics").find(".ak-title").each(function(index, em) {
                         let src_text = $(em).eq(0).text();
-                        bonus.forEach(function (bonu){
-                            src_text = src_text.replace(bonu.en,bonu.cn);
+                        $.each(pedia.bonus, function(k, v) {
+                            src_text = src_text.replace(v.en,v.cn);
                         });
                         $(em).eq(0).text(src_text);
                     });
@@ -138,18 +129,18 @@
                     }
                 } else {
                     let enstr = trimStr($(el).text());
-                    let key = getKeybyEN(enstr, skills);
-                    if (skills[key]) {
-                        if (skilldescriptions[key]) {
+                    let key = getKeybyEN(enstr, pedia.skills);
+                    if (pedia.skills[key]) {
+                        if (pedia.skilldescriptions[key]) {
                             $(el).html(
                                 '<span class="ak-linker" title="' +
-                                skilldescriptions[key].cn +
+                                pedia.skilldescriptions[key].cn +
                                 '"><span style="color:#6495ED">' +
-                                skills[key].cn +
+                                pedia.skills[key].cn +
                                 "</span></span>"
                             );
                         } else {
-                            $(el).html(skills[key].cn);
+                            $(el).html(pedia.skills[key].cn);
                         }
                     }
                 }
@@ -157,15 +148,15 @@
     }
 
     function transKeys() {
-        transKeysList("item_monster_families", families);
-        transKeysList("item_monster_nations", islands);
-        transKeysList("item_monster_capturable", catchables);
-        transKeysList("item_skills", jobs);
-        transKeysList("item_type_1", consumables);
-        transKeysList("item_type_2", consumables);
-        transKeysList("item_rarities", rarities);
-        transKeysList("item_ORIGIN", origines);
-        transKeysList("item_effects", effects);
+        transKeysList("item_monster_families", pedia.families);
+        transKeysList("item_monster_nations", pedia.islands);
+        transKeysList("item_monster_capturable", pedia.catchables);
+        transKeysList("item_skills", pedia.jobs);
+        transKeysList("item_type_1", pedia.consumables);
+        transKeysList("item_type_2", pedia.consumables);
+        transKeysList("item_rarities", pedia.rarities);
+        transKeysList("item_ORIGIN", pedia.origines);
+        transKeysList("item_effects", pedia.effects);
     }
 
     function transKeysList(keystr, keysarray) {
@@ -201,15 +192,15 @@
             case "monster":
             case "monsters":
             case "companions":
-                return monsters;
+                return pedia.monsters;
             case "item":
             case "items":
-                return items;
+                return pedia.items;
             case "set":
             case "sets":
-                return sets;
+                return pedia.sets;
             default:
-                return items;
+                return pedia.items;
         }
     }
 
@@ -237,13 +228,13 @@
             let pagetype = pathname.replace("/en/mmorpg/encyclopedia/", "");
             switch (pagetype) {
                 case "sets":
-                    pedarray = sets;
+                    pedarray = pedia.sets;
                     break;
                 case "monsters":
-                    pedarray = monsters;
+                    pedarray = pedia.monsters;
                     break;
                 default:
-                    pedarray = items;
+                    pedarray = pedia.items;
             }
             $("#text_0").attr("placeholder", "请在此输入需要翻译的中文全名...");
             $("#text_0").attr("autocomplete", "off");
