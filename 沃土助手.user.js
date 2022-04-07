@@ -8,7 +8,7 @@
 // @icon         https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/128.png
 // @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css?v=1.0
 // @require      http://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js?v=1.5
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js?v=1.4
 // @license      MIT License
 // @compatible   chrome
 // @compatible   firefox
@@ -59,6 +59,7 @@
 
             switch (pagetype) {
                 case "monsters":
+                case "sidekicks":
                     var en = $(el).find("td").eq(2).text();
                     if (en != "") {
                         let key = getKeybyEN(en, pedia.families);
@@ -125,7 +126,7 @@
                         $(el).find(".ak-linker").text(pedarray[id].cn);
                     }
                 } else {
-                    let enstr = trimStr($(el).text());
+                    let enstr = $(el).text().trim();
                     let key = getKeybyEN(enstr, pedia.skills);
                     if (pedia.skills[key]) {
                         if (pedia.skilldescriptions[key]) {
@@ -213,10 +214,6 @@
         return result;
     }
     //去除字符窜两边空格
-
-    function trimStr(str) {
-        return str.replace(/(^\s*)|(\s*$)/g, "");
-    }
 
     function translate_run() {
         if ($(".ak-nav-expand-links").length != 0) {
