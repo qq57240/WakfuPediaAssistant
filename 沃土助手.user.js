@@ -8,13 +8,14 @@
 // @icon         https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/128.png
 // @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css?v=1.0
 // @require      http://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js?v=1.4
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js?v=1.5
 // @license      MIT License
 // @compatible   chrome
 // @compatible   firefox
 // @run-at       document-end
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
+// @grant        GM_log
 // ==/UserScript==
 (function() {
     "use strict";
@@ -59,7 +60,6 @@
 
             switch (pagetype) {
                 case "monsters":
-                case "sidekicks":
                     var en = $(el).find("td").eq(2).text();
                     if (en != "") {
                         let key = getKeybyEN(en, pedia.families);
@@ -85,29 +85,36 @@
         });
     }
 
-    function transDetailTable() {
-        let jsonstr, jsonobj, pedarray, id;
-        jsonstr = $(".ak-container.ak-main-aside")
-            .find('script[type="application/json"]')
-            .text();
-        if (jsonstr) {
-            jsonobj = JSON.parse(jsonstr);
-            id = jsonobj.storage.id;
-            pedarray = getArrayByType(jsonobj["storage"].type);
-            $("h1.ak-return-link").contents().eq(2).remove();
-            $("h1.ak-return-link").append(pedarray[id].cn);
-            $("h1.ak-return-link").css("font-family", "微软雅黑");
-            $(".ak-panel-title")
-                .contents()
-                .each(function() {
-                    if (this.nodeType == 3) {
-                        if (this.wholeText.trim() == "Description" && pedia.descriptions[id]) {
-                            debugger;
-                            $(this).parent().next().html(pedia.descriptions[id].cn);
+    function transDetailTable(pagetype, storageid) {
+        GM_log("pagetype:" + pagetype);
+        GM_log("storageid:" + storageid);
+        let pedarray = getArrayByType(pagetype);
+        $("h1.ak-return-link").contents().eq(2).remove();
+        $("h1.ak-return-link").append(pedarray[storageid].cn);
+        $("h1.ak-return-link").css("font-family", "微软雅黑");
+        $(".ak-panel-title")
+            .contents()
+            .each(function() {
+            if (this.nodeType == 3) {
+                switch(this.wholeText.trim()){
+                    case "Description":
+                        if(pedia.descriptions[storageid]){
+                            $(this).parent().next().html(pedia.descriptions[storageid].cn);
                         }
-                    }
-                });
-        }
+                    case "Costs":
+                    case "Effects":
+                    case "Characteristics":
+                    case "Critical Effects":
+                        $(this).parent().next().find(".ak-title").each(function(index, em) {
+                            let src_text = $(em).eq(0).text();
+                            $.each(pedia.bonus, function(k, v) {
+                                src_text = src_text.replace(v.en,v.cn);
+                            });
+                            $(em).eq(0).text(src_text);
+                        });
+                };
+            }
+        });
     }
 
     function transDetailList() {
@@ -185,15 +192,12 @@
             });
     }
 
-    function getArrayByType(type) {
-        switch (type) {
+    function getArrayByType(pagetype) {
+        switch (pagetype) {
             case "monster":
             case "monsters":
             case "companions":
                 return pedia.monsters;
-            case "item":
-            case "items":
-                return pedia.items;
             case "set":
             case "sets":
                 return pedia.sets;
@@ -213,13 +217,17 @@
         });
         return result;
     }
-    //去除字符窜两边空格
 
     function translate_run() {
         if ($(".ak-nav-expand-links").length != 0) {
-            let pedarray, pedtype;
-            let pathname = window.location.pathname;
-            let pagetype = pathname.replace("/en/mmorpg/encyclopedia/", "");
+            let pedarray, pedtype, pathcontent, storageid, pagetype;
+            pathcontent = window.location.pathname.replace('/en/mmorpg/encyclopedia/',"").split("/");
+            if (pathcontent){
+                pagetype = pathcontent[0];
+            }
+            if (pathcontent.length > 1){
+                storageid = parseInt(pathcontent[1]);
+            }
             switch (pagetype) {
                 case "sets":
                     pedarray = pedia.sets;
@@ -286,7 +294,7 @@
                 transKeys();
             }
             if (hasdetail) {
-                transDetailTable();
+                transDetailTable(pagetype, storageid);
                 transDetailList();
             }
         }
