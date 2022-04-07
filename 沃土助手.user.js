@@ -6,9 +6,9 @@
 // @author       Soviet
 // @match        https://www.wakfu.com/en/mmorpg/encyclopedia/*
 // @icon         https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/128.png
-// @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css
+// @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css?v=1.0
 // @require      http://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js?v=1.4
 // @license      MIT License
 // @compatible   chrome
 // @compatible   firefox
@@ -27,9 +27,6 @@
             if (v != null) {
                 if (v["cn"] == str) {
                     result = v["en"];
-                    let reg1 = /\'/g;
-                    let reg2 = /\"/g;
-                    result = result.replace(reg1, "\\'").replace(reg2, '\\"');
                     return false;
                 }
             }
@@ -103,9 +100,9 @@
                 .contents()
                 .each(function() {
                     if (this.nodeType == 3) {
-                        if (this.wholeText.trim() == "Description" && descriptions[id]) {
+                        if (this.wholeText.trim() == "Description" && pedia.descriptions[id]) {
                             debugger;
-                            $(this).parent().next().html(descriptions[id].cn);
+                            $(this).parent().next().html(pedia.descriptions[id].cn);
                         }
                     }
                 });
