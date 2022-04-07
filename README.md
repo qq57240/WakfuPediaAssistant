@@ -2,7 +2,7 @@
 沃土官方百科精准翻译及搜索框增强
 
 Install：
-1. 浏览器安装好TamperMonkey插件（https://www.tampermonkey.net/）
+1. 浏览器安装好TamperMonkey插件 https://www.tampermonkey.net/
 2. 打开https://github.com/qq57240/WakfuPediaAssistant/raw/main/WakfuAssistant.user.js 点击“安装”按钮即可完成安装。
 
 Usage：
