@@ -509,6 +509,10 @@
     "58": {
         cn: "行动力",
         en: "Action Points"
+    },
+    "59": {
+        cn: "生命值",
+        en: "Health Points"
     }
 },
 "catchables": {
