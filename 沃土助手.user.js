@@ -8,7 +8,7 @@
 // @icon         https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/128.png
 // @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css?v=1.0
 // @require      http://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js?v=1.5
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js?v=1.6
 // @license      MIT License
 // @compatible   chrome
 // @compatible   firefox
