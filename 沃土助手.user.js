@@ -6,16 +6,24 @@
 // @author       Soviet
 // @match        https://www.wakfu.com/en/mmorpg/encyclopedia/*
 // @icon         https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/128.png
-// @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css?v=1.0
+// @resource css https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/translate.css
 // @require      http://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/pedia.js?v=1.6
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/consumables_text.js?md5=
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/descriptions_text.js?md5=
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/families_text.js?md5=
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/items_text.js?md5=
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/jobs_text.js?md5=
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/monsters_text.js?md5=
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/other_text.js?md5=aae1af407405fc29bea8da60296346cf
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/sets_text.js?md5=
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skilldescriptions_text.js?md5=
+// @require      https://raw.githubusercontents.com/qq57240/WakfuAssistant/main/data/skills_text.js?md5=
 // @license      MIT License
 // @compatible   chrome
 // @compatible   firefox
 // @run-at       document-end
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
-// @grant        GM_log
 // ==/UserScript==
 (function() {
     "use strict";
@@ -28,6 +36,9 @@
             if (v != null) {
                 if (v["cn"] == str) {
                     result = v["en"];
+                    let reg1 = /\'/g;
+                    let reg2 = /\"/g;
+                    result = result.replace(reg1, "\\'").replace(reg2, '\\"');
                     return false;
                 }
             }
@@ -62,9 +73,9 @@
                 case "monsters":
                     var en = $(el).find("td").eq(2).text();
                     if (en != "") {
-                        let key = getKeybyEN(en, pedia.families);
+                        let key = getKeybyEN(en, families);
                         if (key >= 0) {
-                            $(el).find("td").eq(2).text(pedia.families[key].cn);
+                            $(el).find("td").eq(2).text(families[key].cn);
                         }
                     }
                 case "pets":
@@ -74,8 +85,8 @@
                 case "accessories":
                     $(el).find(".item-caracteristics").find(".ak-title").each(function(index, em) {
                         let src_text = $(em).eq(0).text();
-                        $.each(pedia.bonus, function(k, v) {
-                            src_text = src_text.replace(v.en,v.cn);
+                        bonus.forEach(function (bonu){
+                            src_text = src_text.replace(bonu.en,bonu.cn);
                         });
                         $(em).eq(0).text(src_text);
                     });
@@ -85,36 +96,29 @@
         });
     }
 
-    function transDetailTable(pagetype, storageid) {
-        GM_log("pagetype:" + pagetype);
-        GM_log("storageid:" + storageid);
-        let pedarray = getArrayByType(pagetype);
-        $("h1.ak-return-link").contents().eq(2).remove();
-        $("h1.ak-return-link").append(pedarray[storageid].cn);
-        $("h1.ak-return-link").css("font-family", "微软雅黑");
-        $(".ak-panel-title")
-            .contents()
-            .each(function() {
-            if (this.nodeType == 3) {
-                switch(this.wholeText.trim()){
-                    case "Description":
-                        if(pedia.descriptions[storageid]){
-                            $(this).parent().next().html(pedia.descriptions[storageid].cn);
+    function transDetailTable() {
+        let jsonstr, jsonobj, pedarray, id;
+        jsonstr = $(".ak-container.ak-main-aside")
+            .find('script[type="application/json"]')
+            .text();
+        if (jsonstr) {
+            jsonobj = JSON.parse(jsonstr);
+            id = jsonobj.storage.id;
+            pedarray = getArrayByType(jsonobj["storage"].type);
+            $("h1.ak-return-link").contents().eq(2).remove();
+            $("h1.ak-return-link").append(pedarray[id].cn);
+            $("h1.ak-return-link").css("font-family", "微软雅黑");
+            $(".ak-panel-title")
+                .contents()
+                .each(function() {
+                    if (this.nodeType == 3) {
+                        if (this.wholeText.trim() == "Description" && descriptions[id]) {
+                            debugger;
+                            $(this).parent().next().html(descriptions[id].cn);
                         }
-                    case "Costs":
-                    case "Effects":
-                    case "Characteristics":
-                    case "Critical Effects":
-                        $(this).parent().next().find(".ak-title").each(function(index, em) {
-                            let src_text = $(em).eq(0).text();
-                            $.each(pedia.bonus, function(k, v) {
-                                src_text = src_text.replace(v.en,v.cn);
-                            });
-                            $(em).eq(0).text(src_text);
-                        });
-                };
-            }
-        });
+                    }
+                });
+        }
     }
 
     function transDetailList() {
@@ -133,19 +137,19 @@
                         $(el).find(".ak-linker").text(pedarray[id].cn);
                     }
                 } else {
-                    let enstr = $(el).text().trim();
-                    let key = getKeybyEN(enstr, pedia.skills);
-                    if (pedia.skills[key]) {
-                        if (pedia.skilldescriptions[key]) {
+                    let enstr = trimStr($(el).text());
+                    let key = getKeybyEN(enstr, skills);
+                    if (skills[key]) {
+                        if (skilldescriptions[key]) {
                             $(el).html(
                                 '<span class="ak-linker" title="' +
-                                pedia.skilldescriptions[key].cn +
+                                skilldescriptions[key].cn +
                                 '"><span style="color:#6495ED">' +
-                                pedia.skills[key].cn +
+                                skills[key].cn +
                                 "</span></span>"
                             );
                         } else {
-                            $(el).html(pedia.skills[key].cn);
+                            $(el).html(skills[key].cn);
                         }
                     }
                 }
@@ -153,15 +157,15 @@
     }
 
     function transKeys() {
-        transKeysList("item_monster_families", pedia.families);
-        transKeysList("item_monster_nations", pedia.islands);
-        transKeysList("item_monster_capturable", pedia.catchables);
-        transKeysList("item_skills", pedia.jobs);
-        transKeysList("item_type_1", pedia.consumables);
-        transKeysList("item_type_2", pedia.consumables);
-        transKeysList("item_rarities", pedia.rarities);
-        transKeysList("item_ORIGIN", pedia.origines);
-        transKeysList("item_effects", pedia.effects);
+        transKeysList("item_monster_families", families);
+        transKeysList("item_monster_nations", islands);
+        transKeysList("item_monster_capturable", catchables);
+        transKeysList("item_skills", jobs);
+        transKeysList("item_type_1", consumables);
+        transKeysList("item_type_2", consumables);
+        transKeysList("item_rarities", rarities);
+        transKeysList("item_ORIGIN", origines);
+        transKeysList("item_effects", effects);
     }
 
     function transKeysList(keystr, keysarray) {
@@ -192,17 +196,20 @@
             });
     }
 
-    function getArrayByType(pagetype) {
-        switch (pagetype) {
+    function getArrayByType(type) {
+        switch (type) {
             case "monster":
             case "monsters":
             case "companions":
-                return pedia.monsters;
+                return monsters;
+            case "item":
+            case "items":
+                return items;
             case "set":
             case "sets":
-                return pedia.sets;
+                return sets;
             default:
-                return pedia.items;
+                return items;
         }
     }
 
@@ -217,26 +224,26 @@
         });
         return result;
     }
+    //去除字符窜两边空格
+
+    function trimStr(str) {
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
 
     function translate_run() {
         if ($(".ak-nav-expand-links").length != 0) {
-            let pedarray, pedtype, pathcontent, storageid, pagetype;
-            pathcontent = window.location.pathname.replace('/en/mmorpg/encyclopedia/',"").split("/");
-            if (pathcontent){
-                pagetype = pathcontent[0];
-            }
-            if (pathcontent.length > 1){
-                storageid = parseInt(pathcontent[1]);
-            }
+            let pedarray, pedtype;
+            let pathname = window.location.pathname;
+            let pagetype = pathname.replace("/en/mmorpg/encyclopedia/", "");
             switch (pagetype) {
                 case "sets":
-                    pedarray = pedia.sets;
+                    pedarray = sets;
                     break;
                 case "monsters":
-                    pedarray = pedia.monsters;
+                    pedarray = monsters;
                     break;
                 default:
-                    pedarray = pedia.items;
+                    pedarray = items;
             }
             $("#text_0").attr("placeholder", "请在此输入需要翻译的中文全名...");
             $("#text_0").attr("autocomplete", "off");
@@ -294,7 +301,7 @@
                 transKeys();
             }
             if (hasdetail) {
-                transDetailTable(pagetype, storageid);
+                transDetailTable();
                 transDetailList();
             }
         }
