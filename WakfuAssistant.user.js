@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         沃土百科助手
 // @namespace    https://github.com/qq57240/WakfuPediaAssistant
-// @version      0.2.2
+// @version      0.2.3
 // @description  沃土官方百科精准翻译及搜索框增强
 // @author       Soviet
 // @match        https://www.wakfu.com/en/mmorpg/encyclopedia/*
 // @icon         https://raw.githubusercontents.com/qq57240/WakfuPediaAssistant/main/128.png
 // @resource css https://raw.githubusercontents.com/qq57240/WakfuPediaAssistant/main/translate.css?v=1.0
 // @require      http://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://raw.githubusercontents.com/qq57240/WakfuPediaAssistant/main/pedia.js?v=1.8
+// @require      https://raw.githubusercontents.com/qq57240/WakfuPediaAssistant/main/pedia.js?v=1.9
 // @license      MIT License
 // @compatible   chrome
 // @compatible   firefox
