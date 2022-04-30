@@ -3,7 +3,7 @@
 
 Install：
 1. 浏览器安装好[TamperMonkey](https://www.tampermonkey.net/)插件
-2. 打开沃土百科助手[安装链接](https://github.com/qq57240/WakfuPediaAssistant/raw/main/WakfuAssistant.user.js)，点击“安装”按钮即可完成安装。
+2. 打开沃土百科助手[安装链接](https://raw.githubusercontents.com/qq57240/WakfuPediaAssistant/main/WakfuAssistant.user.js)，点击“安装”按钮即可完成安装。
 
 Usage：
 1. 打开[沃土官方百科](https://www.wakfu.com/en/mmorpg/encyclopedia)
