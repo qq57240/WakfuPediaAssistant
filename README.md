@@ -1,5 +1,5 @@
 # 沃土百科助手
-沃土官方百科精准翻译及搜索框增强</p>
+沃土官方百科精准翻译及搜索框增强
 
 Install：<br>
 1. 浏览器安装好[TamperMonkey](https://www.tampermonkey.net)插件
